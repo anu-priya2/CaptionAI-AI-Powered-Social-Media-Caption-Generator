@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaptionAI - Powered Social Media Caption Generator</title>
+    <!-- Fonts and FontAwesome -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="app-container">
+        <section class="generator-section">
+            <form id="generatorForm" class="glass-panel">
+                <header class="app-header">
+                    <div class="brand-logo">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <h1>Caption<span>AI</span></h1>
+                    </div>
+                    <p class="tagline">Generate platform-optimized captions, hashtags, and CTAs in seconds</p>
+                </header>
+
+                <div class="form-group">
+                    <label for="product_info">Describe your Product, Service or Campaign</label>
+                    <textarea id="product_info" name="product_info" maxlength="2000" placeholder="Tell us about what you want to promote... (e.g. A new collection of eco-friendly, stylish sunglasses)" required></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/2000</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Platform</label>
+                        <div class="btn-group" id="platformGroup">
+                            <button type="button" class="toggle-btn active" data-value="instagram">
+                                <i class="fa-brands fa-instagram"></i> Instagram
+                            </button>
+                            <button type="button" class="toggle-btn" data-value="linkedin">
+                                <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tone of Voice</label>
+                        <div class="btn-group" id="toneGroup">
+                            <button type="button" class="toggle-btn active" data-value="professional">Professional</button>
+                            <button type="button" class="toggle-btn" data-value="casual">Casual</button>
+                            <button type="button" class="toggle-btn" data-value="promotional">Promotional</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn">
+                    <i id="btnIcon" class="fa-solid fa-paper-plane"></i>
+                    <span id="btnLoader" class="loader" style="display: none;"></span>
+                    <span id="btnText">Generate Content</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Dynamic Results Section Container -->
+        <section id="resultsSection" class="results-section" style="display: none;">
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-quote-left header-icon"></i>
+                        <h2>Generated Captions</h2>
+                    </div>
+                    <div id="captionsContainer" class="captions-container"></div>
+                </div>
+                
+                <div class="results-right">
+                    <div class="result-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-hashtag header-icon"></i>
+                            <h2>Recommended Hashtags</h2>
+                        </div>
+                        <div id="hashtagsContainer" class="hashtags-container"></div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-bullhorn header-icon"></i>
+                            <h2>Suggested Call-To-Actions</h2>
+                        </div>
+                        <ul id="ctasList" class="cta-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
